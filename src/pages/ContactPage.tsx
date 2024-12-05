@@ -3,7 +3,9 @@ import { Phone, Mail, Instagram } from 'lucide-react'
 
 export function ContactPage() {
   return (
+    
     <div className="min-h-screen bg-black text-white pt-20">
+      <script src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
       <div className="container mx-auto px-4 py-12">
         <Motion defaultStyle={{ opacity: 0, y: 20 }} style={{ opacity: spring(1), y: spring(0) }}>
           {interpolatedStyle => (
@@ -105,7 +107,36 @@ export function ContactPage() {
                 </div>
               </div>
             )}
+          </Motion>     
+          
+{/* 
+          <Motion defaultStyle={{ opacity: 0, x: -20 }} style={{ opacity: spring(1), x: spring(0) }}>
+            {interpolatedStyle => (
+              <div
+                style={{
+                  opacity: interpolatedStyle.opacity,
+                  transform: `translateX(${interpolatedStyle.x}px)`
+                }}
+                className="bg-gray-900 p-6 rounded-lg"
+              >
+                <div className="tidycal-embed" data-path="learnzouk/workshop-private"></div>
+              </div>
+            )}
           </Motion>
+
+          <Motion defaultStyle={{ opacity: 0, x: 20 }} style={{ opacity: spring(1), x: spring(0) }}>
+            {interpolatedStyle => (
+              <div
+                style={{
+                  opacity: interpolatedStyle.opacity,
+                  transform: `translateX(${interpolatedStyle.x}px)`
+                }}
+                className="bg-gray-900 p-6 rounded-lg"
+              >
+                <div className="tidycal-embed" data-path="learnzouk/online-private"></div>
+              </div>
+            )}
+          </Motion>      */}
         </div>
       </div>
     </div>
