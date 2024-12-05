@@ -1,7 +1,57 @@
 import { Motion, spring } from 'react-motion'
 import { Phone, Mail, Instagram } from 'lucide-react'
+import { useState, FormEvent, useRef } from 'react'
 
 export function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const previousDataRef = useRef(formData);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    
+    // Store current form data before clearing
+    previousDataRef.current = formData;
+    // Optimistically clear the form
+    setFormData({ name: '', email: '', message: '' });
+    setStatus('idle');
+    
+    try {
+      const response = await fetch('https://celerity-forms.web.app/api/formEntries/contact-91d937', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(previousDataRef.current)
+      });
+      
+      if (response.ok) {
+        setStatus('success');
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      // Restore the previous form data
+      setFormData(previousDataRef.current);
+      setStatus('error');
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+    if (status === 'error') {
+      setStatus('idle');
+    }
+  };
+
   return (
     
     <div className="min-h-screen bg-black text-white pt-20">
@@ -36,7 +86,7 @@ export function ContactPage() {
                   We'd love to hear from you. Fill out the form below and we'll get back to you as
                   soon as possible.
                 </p>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
                       Name
@@ -44,7 +94,12 @@ export function ContactPage() {
                     <input
                       type="text"
                       id="name"
-                      className="w-full px-3 py-2 bg-gray-800 rounded-md border border-gray-700 focus:outline-none focus:border-white"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className={`w-full px-3 py-2 bg-gray-800 rounded-md border ${
+                        status === 'error' ? 'border-red-500' : 'border-gray-700'
+                      } focus:outline-none focus:border-white transition-colors`}
                     />
                   </div>
                   <div>
@@ -54,7 +109,12 @@ export function ContactPage() {
                     <input
                       type="email"
                       id="email"
-                      className="w-full px-3 py-2 bg-gray-800 rounded-md border border-gray-700 focus:outline-none focus:border-white"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className={`w-full px-3 py-2 bg-gray-800 rounded-md border ${
+                        status === 'error' ? 'border-red-500' : 'border-gray-700'
+                      } focus:outline-none focus:border-white transition-colors`}
                     />
                   </div>
                   <div>
@@ -64,12 +124,31 @@ export function ContactPage() {
                     <textarea
                       id="message"
                       rows={4}
-                      className="w-full px-3 py-2 bg-gray-800 rounded-md border border-gray-700 focus:outline-none focus:border-white"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      className={`w-full px-3 py-2 bg-gray-800 rounded-md border ${
+                        status === 'error' ? 'border-red-500' : 'border-gray-700'
+                      } focus:outline-none focus:border-white transition-colors`}
                     />
                   </div>
+                  {status === 'error' && (
+                    <div className="text-red-500 text-sm">
+                      Failed to send message. Please try again.
+                    </div>
+                  )}
+                  {status === 'success' && (
+                    <div className="text-green-500 text-sm">
+                      Message sent successfully!
+                    </div>
+                  )}
                   <button
                     type="submit"
-                    className="w-full bg-white text-black py-2 rounded-md hover:bg-gray-200 transition-colors"
+                    className={`w-full py-2 rounded-md transition-colors ${
+                      status === 'error' 
+                        ? 'bg-red-500 hover:bg-red-600 text-white' 
+                        : 'bg-white hover:bg-gray-200 text-black'
+                    }`}
                   >
                     Send Message
                   </button>
@@ -142,4 +221,3 @@ export function ContactPage() {
     </div>
   )
 }
-
