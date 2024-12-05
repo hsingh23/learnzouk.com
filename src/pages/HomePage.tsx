@@ -31,7 +31,7 @@ export function HomePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  Dance with Passion
+                  Learn Zouk with Nina & Matheus
                 </motion.h1>
                 <motion.p 
                   className="text-xl md:text-2xl text-gray-300 mb-8"
@@ -91,7 +91,7 @@ export function HomePage() {
                     <h3 className="text-xl font-bold text-white mb-3">Dance Classes</h3>
                     <ul className="space-y-2 text-gray-300">
                       <li>• Brazilian Zouk (All Levels)</li>
-                      <li>• Ladies & Men's Styling Workshops</li>
+                      <li>• Leads & Follows Styling Workshops</li>
                       <li>• Performance Training</li>
                       <li>• Private Lessons</li>
                     </ul>
