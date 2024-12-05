@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Instagram, Youtube, Menu, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 export function Navigation() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     return (
-        <nav className="fixed w-full z-50 bg-black/90 backdrop-blur-sm">
+        <nav className="fixed w-full z-50   bg-black/90 backdrop-blur-sm">
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                 <Link to="/" className="text-white text-xl font-semibold">
                     NINA & MATHEUS
@@ -21,10 +22,10 @@ export function Navigation() {
                 </div>
 
                 <div className="hidden md:flex items-center space-x-4">
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300">
+                    <a href="https://www.instagram.com/ninaandmatheus" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300">
                         <Instagram className="w-5 h-5" />
                     </a>
-                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300">
+                    <a href="https://www.youtube.com/channel/UCXe6U9JXZSR_pXQboFrRehA" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300">
                         <Youtube className="w-5 h-5" />
                     </a>
                 </div>

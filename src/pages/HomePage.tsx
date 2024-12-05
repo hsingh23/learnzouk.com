@@ -46,8 +46,8 @@ export function HomePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
                 >
-                  <Link href="/subscribe">
-                    <Button size="lg" className="text-lg px-8">Start Dancing</Button>
+                  <Link href="https://school.learnzouk.com/">
+                    <Button size="lg" className="text-lg px-8">Zouk School</Button>
                   </Link>
                 </motion.div>
               </motion.div>
