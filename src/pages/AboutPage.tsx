@@ -45,7 +45,7 @@ const AboutPage: React.FC = () => {
           <TabsContent value="duo">
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <Image
-                src="https://i.imgur.com/example1.jpeg"
+                src="https://i.imgur.com/sV1o0Fh.jpeg"
                 alt="Nina and Matheus performing"
                 width={600}
                 height={400}
@@ -79,7 +79,7 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
               <Image
-                src="https://i.imgur.com/example2.jpeg"
+                src="https://i.imgur.com/sV1o0Fh.jpeg"
                 alt="Nina Darbello"
                 width={600}
                 height={400}
@@ -91,7 +91,7 @@ const AboutPage: React.FC = () => {
           <TabsContent value="matheus">
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <Image
-                src="https://i.imgur.com/example3.jpeg"
+                src="https://i.imgur.com/sV1o0Fh.jpeg"
                 alt="Matheus Franco"
                 width={600}
                 height={400}
@@ -117,22 +117,22 @@ const AboutPage: React.FC = () => {
             {
               title: "Classes",
               description: "Brazilian Zouk for all levels, Lady and Man Style, Performance Training",
-              image: "https://i.imgur.com/example4.jpeg"
+              image: "https://i.imgur.com/sV1o0Fh.jpeg"
             },
             {
               title: "DJ Services",
               description: "Professional DJ services at major Zouk events worldwide",
-              image: "https://i.imgur.com/example5.jpeg"
+              image: "https://i.imgur.com/sV1o0Fh.jpeg"
             },
             {
               title: "Competitions",
               description: "Official BZDC judges and competition champions",
-              image: "https://i.imgur.com/example6.jpeg"
+              image: "https://i.imgur.com/sV1o0Fh.jpeg"
             },
             {
               title: "Performances",
               description: "Traditional Zouk, Lambada, and Lyrical dance shows",
-              image: "https://i.imgur.com/example7.jpeg"
+              image: "https://i.imgur.com/sV1o0Fh.jpeg"
             }
           ].map((item, index) => (
             <MotionCard key={index} variants={fadeInUp} className="overflow-hidden">
@@ -160,9 +160,9 @@ const AboutPage: React.FC = () => {
           <h2 className="text-3xl font-bold mb-6">Global Impact</h2>
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {[
-              "https://i.imgur.com/example8.jpeg",
-              "https://i.imgur.com/example9.jpeg",
-              "https://i.imgur.com/example10.jpeg"
+              "https://i.imgur.com/sV1o0Fh.jpeg",
+              "https://i.imgur.com/sV1o0Fh.jpeg",
+              "https://i.imgur.com/sV1o0Fh.jpeg"
             ].map((src, index) => (
               <Image
                 key={index}

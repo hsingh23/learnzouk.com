@@ -91,7 +91,7 @@ export function HomePage() {
                     <h3 className="text-xl font-bold text-white mb-3">Dance Classes</h3>
                     <ul className="space-y-2 text-gray-300">
                       <li>• Brazilian Zouk (All Levels)</li>
-                      <li>• Lady & Man Style Workshops</li>
+                      <li>• Ladies & Men's Styling Workshops</li>
                       <li>• Performance Training</li>
                       <li>• Private Lessons</li>
                     </ul>
