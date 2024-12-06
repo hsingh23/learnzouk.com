@@ -13,18 +13,23 @@ export default defineConfig({
       manifest: {
         name: 'Learn Zouk - Dance Classes with Nina and Matheus',
         short_name: 'Learn Zouk',
-        description: 'Learn Brazilian Zouk dance with professional instructors Nina and Matheus. Online and in-person classes available.',
+        description: 'Learn Brazilian Zouk dance with professional instructors Nina and Matheus. Online and in-person classes and privates available.',
         theme_color: '#000000',
         background_color: '#000000',
         display: 'standalone',
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: 'pwa-icon-64x64.png',
+            sizes: '64x64',
+            type: 'image/png'
+          },
+          {
+            src: 'pwa-icon-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'pwa-512x512.png',
+            src: 'pwa-icon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable'
@@ -32,7 +37,7 @@ export default defineConfig({
         ],
         start_url: '/',
         orientation: 'portrait',
-        categories: ['education', 'entertainment']
+        categories: ['education', 'entertainment', 'dance', 'fitness']
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg,gif,webp}'],
@@ -44,10 +49,10 @@ export default defineConfig({
               cacheName: 'imgur-images-cache',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+                maxAgeSeconds: 60 * 60 * 24 * 365 // 365 days
               },
               cacheableResponse: {
-                statuses: [0, 200]
+                statuses: [0, 200, 304] // 200: OK, 304: Not Modified
               }
             }
           },
