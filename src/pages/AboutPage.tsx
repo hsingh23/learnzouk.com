@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Image } from '@/components/ui/image';
 
@@ -36,16 +36,16 @@ const AboutPage: React.FC = () => {
         </motion.h1>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-12">
-          <TabsList className="grid w-full grid-cols-3 bg-white/5">
-            <TabsTrigger value="duo" className="data-[state=active]:bg-white/10">Nina & Matheus</TabsTrigger>
-            <TabsTrigger value="nina" className="data-[state=active]:bg-white/10">Nina</TabsTrigger>
-            <TabsTrigger value="matheus" className="data-[state=active]:bg-white/10">Matheus</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 bg-white/10">
+            <TabsTrigger value="duo" className="data-[state=active]:bg-white/80">Nina & Matheus</TabsTrigger>
+            <TabsTrigger value="nina" className="data-[state=active]:bg-white/80">Nina</TabsTrigger>
+            <TabsTrigger value="matheus" className="data-[state=active]:bg-white/80">Matheus</TabsTrigger>
           </TabsList>
 
           <TabsContent value="duo">
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <Image
-                src="https://i.imgur.com/FNQl1AA.jpeg"
+                src="https://i.imgur.com/d7YjFnt.jpeg"
                 alt="Nina and Matheus performing"
                 width={600}
                 height={400}
@@ -79,7 +79,7 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
               <Image
-                src="https://i.imgur.com/l0FBl1g.jpeg"
+                src="https://i.imgur.com/EBSkoAU.jpeg"
                 alt="Nina Darbello"
                 width={600}
                 height={400}
@@ -91,7 +91,7 @@ const AboutPage: React.FC = () => {
           <TabsContent value="matheus">
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               <Image
-                src="https://i.imgur.com/TIysDRC.png"
+                src="https://i.imgur.com/5BvLGM8.jpeg"
                 alt="Matheus Franco"
                 width={600}
                 height={400}
@@ -117,22 +117,22 @@ const AboutPage: React.FC = () => {
             {
               title: "Classes",
               description: "Brazilian Zouk for all levels, Lady and Man Style, Performance Training",
-              image: "https://i.imgur.com/SH34HiV.jpeg"
+              image: "https://i.imgur.com/0YFIBnc.jpeg"
             },
             {
               title: "DJ Services",
               description: "Professional DJ services at major Zouk events worldwide",
-              image: "https://i.imgur.com/AHpLtBT.jpeg"
+              image: "https://i.imgur.com/dKryOWZ.jpeg"
             },
             {
               title: "Competitions",
               description: "Official BZDC judges and competition champions",
-              image: "https://i.imgur.com/Xfl3Aat.png"
+              image: "https://i.imgur.com/pRYoUFy.jpeg"
             },
             {
               title: "Performances",
               description: "Traditional Zouk, Lambada, and Lyrical dance shows",
-              image: "https://i.imgur.com/jW50j1E.png"
+              image: "https://i.imgur.com/BYt8dL1.jpeg"
             }
           ].map((item, index) => (
             <MotionCard key={index} variants={fadeInUp} className="overflow-hidden">
@@ -160,9 +160,9 @@ const AboutPage: React.FC = () => {
           <h2 className="text-3xl font-bold mb-6">Global Impact</h2>
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             {[
-              "https://i.imgur.com/8JDBp9M.jpeg",
-              "https://i.imgur.com/3rNQAr6.jpeg",
-              "https://i.imgur.com/EmCl8Bw.jpeg"
+              "https://i.imgur.com/0MvL2Ys.jpeg",
+              "https://i.imgur.com/GLIf1mo.jpeg",
+              "https://i.imgur.com/IZUyvY2.jpeg"
             ].map((src, index) => (
               <Image
                 key={index}

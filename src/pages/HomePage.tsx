@@ -197,7 +197,7 @@ export function HomePage() {
                 </div>
                 <div className="aspect-square rounded-lg overflow-hidden">
                   <Image 
-                    src="https://i.imgur.com/19UnUzm.jpeg"
+                    src="https://i.imgur.com/c1uDcqL.jpeg"
                     alt="Nina Darbello"
                     width={600}
                     height={600}

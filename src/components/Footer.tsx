@@ -27,19 +27,43 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
             <div className="flex space-x-4">
-              <a href="https://www.instagram.com/ninaandmatheus" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <a 
+                href="https://www.instagram.com/ninaandmatheus" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="transition-colors"
+                title="@ninaandmatheus"
+              >
                 <Instagram className="h-6 w-6" />
                 <span className="sr-only">Instagram</span>
               </a>
-              <a href="https://www.instagram.com/ninadarbello" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <a 
+                href="https://www.instagram.com/ninadarbello" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="transition-colors"
+                title="@ninadarbello"
+              >
                 <Instagram className="h-6 w-6" />
                 <span className="sr-only">Nina's Instagram</span>
               </a>
-              <a href="https://www.instagram.com/thsfranco" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <a 
+                href="https://www.instagram.com/thsfranco" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="transition-colors"
+                title="@thsfranco"
+              >
                 <Instagram className="h-6 w-6" />
                 <span className="sr-only">Matheus's Instagram</span>
               </a>
-              <a href="https://www.youtube.com/channel/UCXe6U9JXZSR_pXQboFrRehA" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <a 
+                href="https://www.youtube.com/channel/UCXe6U9JXZSR_pXQboFrRehA" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="transition-colors"
+                title="Nina and Matheus on YouTube"
+              >
                 <Youtube className="h-6 w-6" />
                 <span className="sr-only">YouTube</span>
               </a>
@@ -48,10 +72,9 @@ export function Footer() {
         </div>
         
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
-          © 2024 Nina & Matheus Dance. All rights reserved.
+          2024 Nina & Matheus Dance. All rights reserved.
         </div>
       </div>
     </footer>
   )
 }
-

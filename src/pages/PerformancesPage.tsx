@@ -1,7 +1,17 @@
 import { Motion, spring } from 'react-motion'
-import YouTube from 'react-youtube'
+import YouTube from '@/components/Youtube'
 
 const performances = [
+  {
+    title: "Zouk Town 2022 Demo",
+    description: "Demonstration at Zouk Town, Lyon, France",
+    videoId: "RkggR4Wsbqk"
+  },
+  {
+    title: "BDF 2022 Demo",
+    description: "Demonstration at Brazilian Dance Festival, Amsterdam, Netherlands",
+    videoId: "Dg7sG2s6sd4"
+  },
   {
     title: "I Have Nothing - BDF 2022",
     description: "Choreography performed at Brazilian Dance Festival, Holland",
@@ -12,16 +22,6 @@ const performances = [
     description: "Performance at Zouktime, Czech Republic",
     videoId: "VGztJuwu-gw"
   },
-  {
-    title: "Zouk Town 2022 Demo",
-    description: "Demonstration at Zouk Town, Lyon, France",
-    videoId: "RkggR4Wsbqk"
-  },
-  {
-    title: "BDF 2022 Demo",
-    description: "Demonstration at Brazilian Dance Festival, Amsterdam, Netherlands",
-    videoId: "Dg7sG2s6sd4"
-  }
 ]
 
 export function PerformancesPage() {
