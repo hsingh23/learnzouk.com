@@ -3,8 +3,40 @@ import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Image } from '@/components/ui/image'
 import { useState, useRef, useEffect } from 'react'
+import { MediaCarousel } from '@/components/MediaCarousel';
 
 export function HomePage() {
+    const events = [
+        {
+          title: "Elevation Zouk Festival",
+          location: "Currently in Denver, USA - 2024",
+          url: "https://www.elevationdenverzouk.com/",
+          type: "video",
+          media: "/elevation-promo.mp4",
+        },
+        {
+          title: "Back to the Zouker",
+          location: "Chicago, USA - 2024",
+          url: "https://www.facebook.com/events/1611-n-sheffield-ave-3rd-floor-chicago-il-60614/back-to-the-zouker-chicago-edition-/1013121027179055/",
+          type: "image",
+          media: "/back-to-zouker.jpg",
+        },
+        {
+          title: "Boston Zouk on the Docks",
+          location: "Boston, USA - 2024",
+          url: "https://www.facebook.com/events/549341691334709",
+          type: "image",
+          media: "/boston-zotd-2024.jpg",
+        },
+        {
+          title: "Global Dance Journey",
+          location: "A Journey Through Time and Dance",
+          description: "From vibrant festivals to intimate workshops, we've shared our passion for Brazilian Zouk across continents. Each event is a unique celebration of dance, music, and cultural connection.",
+          type: "text",
+          media: null,
+        }
+      ];
+
     return (
         <div className="relative">
           {/* Hero Section */}
@@ -73,7 +105,7 @@ export function HomePage() {
                 </p>
               </motion.div>
 
-              <EventCarousel />
+              <MediaCarousel media={events} enableAnimation={true} />
             </div>
           </section>
           
@@ -268,297 +300,4 @@ export function HomePage() {
           </section>
         </div>
       )
-}
-
-export function EventCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [videoMuted, setVideoMuted] = useState(true);
-  const [imageLoaded, setImageLoaded] = useState<{ [key: string]: boolean }>({});
-  const [imageAspectRatios, setImageAspectRatios] = useState<{ [key: string]: number }>({});
-  const videoRefs = useRef<{ [key: string]: HTMLVideoElement }>({});
-  const constraintsRef = useRef(null);
-  const [panDirection, setPanDirection] = useState(1); // 1 for right, -1 for left
-
-  useEffect(() => {
-    let panInterval: NodeJS.Timeout | null = null;
-    
-    // Set up panning for wide images
-    if (imageLoaded[currentIndex] && imageAspectRatios[currentIndex] > 1.5) {
-      panInterval = setInterval(() => {
-        setPanDirection(prev => prev * -1);
-      }, 5000);
-    }
-
-    return () => {
-      if (panInterval) {
-        clearInterval(panInterval);
-      }
-    };
-  }, [currentIndex, imageLoaded, imageAspectRatios]);
-
-  const events = [
-    {
-      title: "Elevation Zouk Festival",
-      location: "Currently in Denver, USA - 2024",
-      url: "https://www.elevationdenverzouk.com/",
-      type: "video",
-      media: "/elevation-promo.mp4",
-    },
-    {
-      title: "Back to the Zouker",
-      location: "Chicago, USA - 2024",
-      url: "https://www.facebook.com/events/1611-n-sheffield-ave-3rd-floor-chicago-il-60614/back-to-the-zouker-chicago-edition-/1013121027179055/",
-      type: "image",
-      media: "/back-to-zouker.jpg",
-    },
-    {
-      title: "Boston Zouk on the Docks",
-      location: "Boston, USA - 2024",
-      url: "https://www.facebook.com/events/549341691334709",
-      type: "image",
-      media: "/boston-zotd-2024.jpg",
-    },
-    {
-      title: "Global Dance Journey",
-      location: "A Journey Through Time and Dance",
-      description: "From vibrant festivals to intimate workshops, we've shared our passion for Brazilian Zouk across continents. Each event is a unique celebration of dance, music, and cultural connection.",
-      type: "text",
-      media: null,
-    }
-  ];
-
-  useEffect(() => {
-    // Pause all videos except the current one
-    Object.entries(videoRefs.current).forEach(([index, video]) => {
-      if (parseInt(index) === currentIndex) {
-        video.play();
-      } else {
-        video.pause();
-      }
-    });
-  }, [currentIndex]);
-
-  const handleImageLoad = (index: number, event: any) => {
-    const img = event.target;
-    const aspectRatio = img.naturalWidth / img.naturalHeight;
-    setImageAspectRatios(prev => ({ ...prev, [index]: aspectRatio }));
-    setImageLoaded(prev => ({ ...prev, [index]: true }));
-  };
-
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: any) => {
-    const swipeThreshold = 50;
-    if (info.offset.x < -swipeThreshold && currentIndex < events.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else if (info.offset.x > swipeThreshold && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentIndex < events.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
-  };
-
-  return (
-    <div className="relative h-[80vh]" ref={constraintsRef}>
-      <div className="overflow-hidden h-full">
-        <motion.div
-          className="flex h-full"
-          animate={{ x: `${-currentIndex * 100}%` }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          drag="x"
-          dragConstraints={constraintsRef}
-          onDragEnd={handleDragEnd}
-          style={{ touchAction: 'pan-y pinch-zoom' }}
-        >
-          {events.map((event, index) => (
-            <motion.div
-              key={index}
-              className="w-full flex-shrink-0 px-4 h-full flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: index * 0.2 }}
-            >
-              <div className="relative w-full h-full flex items-center justify-center">
-                <div className="relative w-full h-full flex items-center justify-center">
-                  {event.type === 'video' && (
-                    <div className="relative w-full h-full flex items-center justify-center">
-                      <div className="relative w-full h-full max-w-[800px] flex items-center justify-center">
-                        <video
-                          ref={el => { if (el) videoRefs.current[index] = el; }}
-                          className="w-full h-full object-contain rounded-xl"
-                          autoPlay
-                          loop
-                          playsInline
-                          muted={videoMuted}
-                          controls={false}
-                        >
-                          <source src={event.media} type="video/mp4" />
-                        </video>
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setVideoMuted(!videoMuted);
-                          }}
-                          className="absolute bottom-4 right-4 z-10 bg-black/50 p-2 rounded-full hover:bg-black/70 transition-colors"
-                        >
-                          {videoMuted ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                            </svg>
-                          ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                            </svg>
-                          )}
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                  {event.type === 'image' && (
-                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-                      <motion.div 
-                        className="relative flex items-center justify-center"
-                        initial={false}
-                        animate={{
-                          width: imageLoaded[index] && imageAspectRatios[index] > 1 
-                            ? 'min(95vw, 1600px)'
-                            : 'min(80vh, 800px)',
-                          height: 'auto',
-                          scale: [1, 1.01, 1],
-                          transition: { 
-                            width: { duration: 0.5, ease: "easeInOut" },
-                            scale: {
-                              duration: 10,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }
-                          }
-                        }}
-                      >
-                        <div className="relative w-full overflow-hidden rounded-xl" style={{ 
-                          paddingTop: imageLoaded[index] 
-                            ? `${100 / (imageAspectRatios[index] || 1)}%` 
-                            : '100%',
-                          maxHeight: '80vh'
-                        }}>
-                          <motion.div
-                            className="absolute inset-0"
-                            animate={{
-                              x: imageLoaded[index] && imageAspectRatios[index] > 1.5
-                                ? `${panDirection * -10}%`
-                                : '0%'
-                            }}
-                            transition={{
-                              duration: 5,
-                              ease: "easeInOut"
-                            }}
-                          >
-                            <Image
-                              src={event.media}
-                              alt={event.title}
-                              fill
-                              className="object-cover rounded-xl"
-                              onLoadingComplete={(e) => handleImageLoad(index, { target: e })}
-                            />
-                          </motion.div>
-                        </div>
-                      </motion.div>
-                    </div>
-                  )}
-                  {event.type === 'text' && (
-                    <div className="relative w-full h-full flex items-center justify-center bg-black rounded-xl overflow-hidden">
-                      <div className="absolute inset-0">
-                        <Image
-                          src="/patterns/dance-pattern.png"
-                          alt="Dance Pattern"
-                          fill
-                          className="object-cover opacity-10"
-                        />
-                      </div>
-                      <div className="relative text-center max-w-2xl mx-auto px-6">
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3 }}
-                        >
-                          <h3 className="text-4xl font-bold text-white mb-4">{event.title}</h3>
-                          <p className="text-xl text-white/80 mb-6">{event.location}</p>
-                          <p className="text-lg text-white/70 leading-relaxed">{event.description}</p>
-                        </motion.div>
-                      </div>
-                    </div>
-                  )}
-                  {(event.type === 'video' || event.type === 'image') && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-xl">
-                      <div className="absolute bottom-0 p-6 z-20 w-full text-left md:text-center">
-                        <a
-                          href={event.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group inline-block"
-                        >
-                          <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">{event.title}</h3>
-                        </a>
-                        <p className="text-gray-300">{event.location}</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Navigation Arrows */}
-      <div className="absolute inset-y-0 left-4 flex items-center">
-        <button
-          onClick={handlePrev}
-          className={`p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors ${
-            currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
-          disabled={currentIndex === 0}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-      </div>
-      <div className="absolute inset-y-0 right-4 flex items-center">
-        <button
-          onClick={handleNext}
-          className={`p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors ${
-            currentIndex === events.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
-          disabled={currentIndex === events.length - 1}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Dots Navigation */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {events.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-colors ${
-              currentIndex === index ? 'bg-white' : 'bg-white/50'
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
 }
