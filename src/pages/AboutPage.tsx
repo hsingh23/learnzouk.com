@@ -36,10 +36,10 @@ const AboutPage: React.FC = () => {
         </motion.h1>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-12">
-          <TabsList className="grid w-full grid-cols-3 bg-white/5">
-            <TabsTrigger value="duo" className="data-[state=active]:bg-white/10">Nina & Matheus</TabsTrigger>
-            <TabsTrigger value="nina" className="data-[state=active]:bg-white/10">Nina</TabsTrigger>
-            <TabsTrigger value="matheus" className="data-[state=active]:bg-white/10">Matheus</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 bg-white/10">
+            <TabsTrigger value="duo" className="data-[state=active]:bg-white/80">Nina & Matheus</TabsTrigger>
+            <TabsTrigger value="nina" className="data-[state=active]:bg-white/80">Nina</TabsTrigger>
+            <TabsTrigger value="matheus" className="data-[state=active]:bg-white/80">Matheus</TabsTrigger>
           </TabsList>
 
           <TabsContent value="duo">
