@@ -1,5 +1,5 @@
 import { Motion, spring } from 'react-motion'
-import YouTube from 'react-youtube'
+import YouTube from '@/components/Youtube'
 
 const performances = [
   {

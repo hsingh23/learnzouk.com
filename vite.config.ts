@@ -57,6 +57,20 @@ export default defineConfig({
             }
           },
           {
+            urlPattern: /^https:\/\/www\.youtube\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'youtube-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 365 // 365 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200, 304] // 200: OK, 304: Not Modified
+              }
+            }
+          },
+          {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
             handler: 'CacheFirst',
             options: {
