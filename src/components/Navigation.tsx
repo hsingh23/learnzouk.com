@@ -12,7 +12,7 @@ export function Navigation() {
         <nav className="fixed w-full z-50   bg-black/90 backdrop-blur-sm">
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                 <Link to="/" className="text-white text-xl font-semibold">
-                    NINA & MATHEUS
+                    Learn Zouk with Nina & Matheus
                 </Link>
 
                 <div className="hidden md:flex items-center space-x-8">
