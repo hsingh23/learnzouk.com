@@ -1,4 +1,4 @@
-import { Motion, spring } from 'react-motion'
+import { motion } from 'motion/react'
 import YouTube from '@/components/Youtube'
 
 const performances = [
@@ -28,66 +28,49 @@ export function PerformancesPage() {
   return (
     <div className="min-h-screen bg-black text-white pt-20">
       <div className="container mx-auto px-4 py-12">
-        <Motion defaultStyle={{ opacity: 0, y: 50 }} style={{ opacity: spring(1), y: spring(0) }}>
-          {interpolatedStyle => (
-            <div
-              style={{
-                opacity: interpolatedStyle.opacity,
-                transform: `translateY(${interpolatedStyle.y}px)`
-              }}
-            >
-              <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">
-                Our Performances
-              </h1>
-              <p className="text-gray-400 text-center mb-12">
-                Watch our latest performances and choreographies from around the world
-              </p>
-            </div>
-          )}
-        </Motion>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            Our Performances
+          </h1>
+          <p className="text-gray-400 text-center mb-12">
+            Watch our latest performances and choreographies from around the world
+          </p>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {performances.map((performance, index) => (
-            <Motion
+            <motion.div
               key={performance.videoId}
-              defaultStyle={{ opacity: 0, y: 50 }}
-              style={{
-                opacity: spring(1, { stiffness: 60, damping: 15 }),
-                y: spring(0, { stiffness: 60, damping: 15 })
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-gray-900 p-4 rounded-lg"
             >
-              {interpolatedStyle => (
-                <div
-                  style={{
-                    opacity: interpolatedStyle.opacity,
-                    transform: `translateY(${interpolatedStyle.y}px)`
+              <div className="aspect-video">
+                <YouTube
+                  videoId={performance.videoId}
+                  opts={{
+                    width: '100%',
+                    height: '100%',
+                    playerVars: {
+                      autoplay: 0,
+                    },
                   }}
-                  className="bg-gray-900 rounded-lg overflow-hidden"
-                >
-                  <div className="aspect-video">
-                    <YouTube
-                      videoId={performance.videoId}
-                      opts={{
-                        width: '100%',
-                        height: '100%',
-                        playerVars: {
-                          autoplay: 0,
-                        },
-                      }}
-                      className="w-full h-full"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="text-xl font-semibold mb-2">{performance.title}</h3>
-                    <p className="text-gray-400">{performance.description}</p>
-                  </div>
-                </div>
-              )}
-            </Motion>
+                  className="w-full h-full"
+                />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-2">{performance.title}</h3>
+                <p className="text-gray-400">{performance.description}</p>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </div>
   )
 }
-

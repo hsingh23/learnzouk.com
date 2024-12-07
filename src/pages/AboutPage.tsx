@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Image } from '@/components/ui/image';
 
-const MotionCard = motion(Card);
+const MotionCard = motion.create(Card);
 
 const AboutPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('duo');
