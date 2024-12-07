@@ -151,8 +151,7 @@ export function ContactPage() {
               </form>
             </div>
           </motion.div>
-      {/* <script src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script> */}
-          {/* <motion.div
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -180,7 +179,8 @@ export function ContactPage() {
               </div>
             </div>
           </motion.div>     
-          
+          {/* 
+      <script src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>
 
           <motion.div
             initial={{ opacity: 0, x: -20 }}
