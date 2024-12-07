@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['**/*.{ico,png,svg,jpg,jpeg,gif,webp}'],
+      includeAssets: ['**/*.{ico,png,svg,jpg,jpeg,gif,webp,mp4}'],
       manifest: {
         name: 'Learn Zouk - Dance Classes with Nina and Matheus',
         short_name: 'Learn Zouk',
