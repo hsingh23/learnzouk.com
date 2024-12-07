@@ -433,7 +433,15 @@ export function EventCarousel() {
                             ? 'min(95vw, 1600px)'
                             : 'min(80vh, 800px)',
                           height: 'auto',
-                          transition: { duration: 0.5, ease: "easeInOut" }
+                          scale: [1, 1.01, 1],
+                          transition: { 
+                            width: { duration: 0.5, ease: "easeInOut" },
+                            scale: {
+                              duration: 10,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }
+                          }
                         }}
                       >
                         <div className="relative w-full overflow-hidden rounded-xl" style={{ 
@@ -490,15 +498,15 @@ export function EventCarousel() {
                     </div>
                   )}
                   {(event.type === 'video' || event.type === 'image') && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-xl pointer-events-none">
-                      <div className="absolute bottom-0 p-6">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-xl">
+                      <div className="absolute bottom-0 p-6 z-20 w-full text-left md:text-center">
                         <a
                           href={event.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block"
+                          className="group inline-block"
                         >
-                          <h3 className="text-2xl font-bold text-white mb-2 hover:text-purple-300 transition-colors">{event.title}</h3>
+                          <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">{event.title}</h3>
                         </a>
                         <p className="text-gray-300">{event.location}</p>
                       </div>
