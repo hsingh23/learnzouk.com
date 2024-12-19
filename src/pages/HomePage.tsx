@@ -1,9 +1,8 @@
 import { motion } from 'motion/react' 
-import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Image } from '@/components/ui/image'
-import { useState, useRef, useEffect } from 'react'
 import { MediaCarousel } from '@/components/MediaCarousel';
+import { TourSchedule } from '@/components/TourSchedule'
 
 export function HomePage() {
     const events = [
@@ -64,8 +63,16 @@ export function HomePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
                 >
-                  Learn Zouk with Nina & Matheus
+                  Learn Zouk
                 </motion.h1>
+                <motion.h2
+                  className="text-3xl md:text-5xl font-serif font-display font-bold mb-6 text-slate-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                >
+                   with Nina & Matheus
+                </motion.h2>
                 <motion.p 
                   className="text-xl md:text-2xl text-gray-300 mb-8"
                   initial={{ opacity: 0, y: 20 }}
@@ -86,7 +93,26 @@ export function HomePage() {
               </motion.div>
             </div>
           </section>
-          
+          {/* 2025 Tour Schedule Section */}
+          <section className="py-24 bg-black">
+            <div className="container">
+              <motion.div
+                className="text-center mb-12"
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+                  2025 Tour Schedule
+                </h2>
+                <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                  Join us at dance events around the world
+                </p>
+              </motion.div>
+              <TourSchedule />
+            </div>
+          </section>
           {/* Follow Us Section */}
           <section className="relative py-16 bg-black overflow-hidden">
             <div className="">
