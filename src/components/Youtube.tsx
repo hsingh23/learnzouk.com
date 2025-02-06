@@ -1,9 +1,8 @@
 /** @jsxRuntime classic */
-import PropTypes from 'prop-types';
-import React from 'react';
-import isEqual from 'fast-deep-equal';
-import youTubePlayer from 'youtube-player';
-import type { YouTubePlayer, Options } from 'youtube-player/dist/types';
+import React from "react";
+import isEqual from "fast-deep-equal";
+import youTubePlayer from "youtube-player";
+import type { YouTubePlayer, Options } from "youtube-player/dist/types";
 
 /**
  * Check whether a `props` change should result in the video being updated.
@@ -48,9 +47,7 @@ function filterResetOptions(opts: Options = {}) {
  * those.
  */
 function shouldResetPlayer(prevProps: YouTubeProps, props: YouTubeProps) {
-  return (
-    prevProps.videoId !== props.videoId || !isEqual(filterResetOptions(prevProps.opts), filterResetOptions(props.opts))
-  );
+  return prevProps.videoId !== props.videoId || !isEqual(filterResetOptions(prevProps.opts), filterResetOptions(props.opts));
 }
 
 /**
@@ -109,12 +106,12 @@ export type YouTubeProps = {
   /**
    * Title of the video for the iframe's title tag.
    */
-  title?: React.IframeHTMLAttributes<HTMLIFrameElement>['title'];
+  title?: React.IframeHTMLAttributes<HTMLIFrameElement>["title"];
   /**
    * Indicates how the browser should load the iframe
    * {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-loading}
    */
-  loading?: React.IframeHTMLAttributes<HTMLIFrameElement>['loading'];
+  loading?: React.IframeHTMLAttributes<HTMLIFrameElement>["loading"];
   /**
    * An object that specifies player options
    * {@link https://developers.google.com/youtube/iframe_api_reference#Loading_a_Video_Player}
@@ -160,12 +157,12 @@ export type YouTubeProps = {
 };
 
 const defaultProps: YouTubeProps = {
-  videoId: '',
-  id: '',
-  className: '',
-  iframeClassName: '',
+  videoId: "",
+  id: "",
+  className: "",
+  iframeClassName: "",
   style: {},
-  title: '',
+  title: "",
   loading: undefined,
   opts: {},
   onReady: () => {},
@@ -178,27 +175,7 @@ const defaultProps: YouTubeProps = {
   onPlaybackQualityChange: () => {},
 };
 
-const propTypes = {
-  videoId: PropTypes.string,
-  id: PropTypes.string,
-  className: PropTypes.string,
-  iframeClassName: PropTypes.string,
-  style: PropTypes.object,
-  title: PropTypes.string,
-  loading: PropTypes.oneOf(['lazy', 'eager']),
-  opts: PropTypes.objectOf(PropTypes.any),
-  onReady: PropTypes.func,
-  onError: PropTypes.func,
-  onPlay: PropTypes.func,
-  onPause: PropTypes.func,
-  onEnd: PropTypes.func,
-  onStateChange: PropTypes.func,
-  onPlaybackRateChange: PropTypes.func,
-  onPlaybackQualityChange: PropTypes.func,
-};
-
 class YouTube extends React.Component<YouTubeProps> {
-  static propTypes = propTypes;
   static defaultProps = defaultProps;
 
   /**
@@ -324,7 +301,7 @@ class YouTube extends React.Component<YouTubeProps> {
    */
   createPlayer = () => {
     // do not attempt to create a player server-side, it won't work
-    if (typeof document === 'undefined') return;
+    if (typeof document === "undefined") return;
     if (this.destroyPlayerPromise) {
       // We need to first await the existing player to be destroyed before
       // we can re-create it.
@@ -339,15 +316,15 @@ class YouTube extends React.Component<YouTubeProps> {
     };
     this.internalPlayer = youTubePlayer(this.container!, playerOpts);
     // attach event handlers
-    this.internalPlayer.on('ready', this.onPlayerReady as any);
-    this.internalPlayer.on('error', this.onPlayerError as any);
-    this.internalPlayer.on('stateChange', this.onPlayerStateChange as any);
-    this.internalPlayer.on('playbackRateChange', this.onPlayerPlaybackRateChange as any);
-    this.internalPlayer.on('playbackQualityChange', this.onPlayerPlaybackQualityChange as any);
+    this.internalPlayer.on("ready", this.onPlayerReady as any);
+    this.internalPlayer.on("error", this.onPlayerError as any);
+    this.internalPlayer.on("stateChange", this.onPlayerStateChange as any);
+    this.internalPlayer.on("playbackRateChange", this.onPlayerPlaybackRateChange as any);
+    this.internalPlayer.on("playbackQualityChange", this.onPlayerPlaybackQualityChange as any);
     if (this.props.title || this.props.loading) {
       this.internalPlayer.getIframe().then((iframe) => {
-        if (this.props.title) iframe.setAttribute('title', this.props.title);
-        if (this.props.loading) iframe.setAttribute('loading', this.props.loading);
+        if (this.props.title) iframe.setAttribute("title", this.props.title);
+        if (this.props.loading) iframe.setAttribute("loading", this.props.loading);
       });
     }
   };
@@ -364,18 +341,18 @@ class YouTube extends React.Component<YouTubeProps> {
    */
   updatePlayer = () => {
     this.internalPlayer?.getIframe().then((iframe) => {
-      if (this.props.id) iframe.setAttribute('id', this.props.id);
-      else iframe.removeAttribute('id');
-      if (this.props.iframeClassName) iframe.setAttribute('class', this.props.iframeClassName);
-      else iframe.removeAttribute('class');
-      if (this.props.opts && this.props.opts.width) iframe.setAttribute('width', this.props.opts.width.toString());
-      else iframe.removeAttribute('width');
-      if (this.props.opts && this.props.opts.height) iframe.setAttribute('height', this.props.opts.height.toString());
-      else iframe.removeAttribute('height');
-      if (this.props.title) iframe.setAttribute('title', this.props.title);
-      else iframe.setAttribute('title', 'YouTube video player');
-      if (this.props.loading) iframe.setAttribute('loading', this.props.loading);
-      else iframe.removeAttribute('loading');
+      if (this.props.id) iframe.setAttribute("id", this.props.id);
+      else iframe.removeAttribute("id");
+      if (this.props.iframeClassName) iframe.setAttribute("class", this.props.iframeClassName);
+      else iframe.removeAttribute("class");
+      if (this.props.opts && this.props.opts.width) iframe.setAttribute("width", this.props.opts.width.toString());
+      else iframe.removeAttribute("width");
+      if (this.props.opts && this.props.opts.height) iframe.setAttribute("height", this.props.opts.height.toString());
+      else iframe.removeAttribute("height");
+      if (this.props.title) iframe.setAttribute("title", this.props.title);
+      else iframe.setAttribute("title", "YouTube video player");
+      if (this.props.loading) iframe.setAttribute("loading", this.props.loading);
+      else iframe.removeAttribute("loading");
     });
   };
 
@@ -392,7 +369,7 @@ class YouTube extends React.Component<YouTubeProps> {
    * YouTube Player API methods to update the video.
    */
   updateVideo = () => {
-    if (typeof this.props.videoId === 'undefined' || this.props.videoId === null) {
+    if (typeof this.props.videoId === "undefined" || this.props.videoId === null) {
       this.internalPlayer?.stopVideo();
       return;
     }
@@ -405,10 +382,10 @@ class YouTube extends React.Component<YouTubeProps> {
 
     if (this.props.opts?.playerVars) {
       autoplay = this.props.opts.playerVars.autoplay === 1;
-      if ('start' in this.props.opts.playerVars) {
+      if ("start" in this.props.opts.playerVars) {
         opts.startSeconds = this.props.opts.playerVars.start;
       }
-      if ('end' in this.props.opts.playerVars) {
+      if ("end" in this.props.opts.playerVars) {
         opts.endSeconds = this.props.opts.playerVars.end;
       }
     }
