@@ -41,10 +41,8 @@ export function HomePage() {
     <div className="relative">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-        <div className="absolute inset-0 z-0">
-          <motion.div initial={{ opacity: 0, y: 120 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }}>
-            <Image src="https://i.imgur.com/iJsMbpg.jpeg" alt="Nina and Matheus dancing" fill className="object-cover opacity-50 image-mask" priority />
-          </motion.div>
+        <div className="absolute inset-0 z-0 ">
+          <Image src="https://i.imgur.com/iJsMbpg.jpeg" alt="Nina and Matheus dancing" fill className="object-cover opacity-50 image-mask mt-16" priority />
         </div>
 
         <div className="container relative z-10">
