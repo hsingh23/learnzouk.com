@@ -387,17 +387,33 @@ export function TourSchedule() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="mb-4 flex justify-center gap-2">
-        <Button onClick={() => setSelectedInstructor("all")} variant={selectedInstructor === "all" ? "default" : "outline"} className="px-4 py-2">
+      <div className="mb-4 flex justify-center gap-1 sm:gap-2">
+        <Button 
+          onClick={() => setSelectedInstructor("all")} 
+          variant={selectedInstructor === "all" ? "default" : "outline"} 
+          className="px-2 py-1 text-xs sm:text-sm sm:px-4 sm:py-2"
+        >
           All Events
         </Button>
-        <Button onClick={() => setSelectedInstructor("both")} variant={selectedInstructor === "both" ? "default" : "outline"} className="px-4 py-2">
+        <Button 
+          onClick={() => setSelectedInstructor("both")} 
+          variant={selectedInstructor === "both" ? "default" : "outline"} 
+          className="px-2 py-1 text-xs sm:text-sm sm:px-4 sm:py-2"
+        >
           Nina & Matheus
         </Button>
-        <Button onClick={() => setSelectedInstructor("nina")} variant={selectedInstructor === "nina" ? "default" : "outline"} className="px-4 py-2">
+        <Button 
+          onClick={() => setSelectedInstructor("nina")} 
+          variant={selectedInstructor === "nina" ? "default" : "outline"} 
+          className="px-2 py-1 text-xs sm:text-sm sm:px-4 sm:py-2"
+        >
           Just Nina
         </Button>
-        <Button onClick={() => setSelectedInstructor("matheus")} variant={selectedInstructor === "matheus" ? "default" : "outline"} className="px-4 py-2">
+        <Button 
+          onClick={() => setSelectedInstructor("matheus")} 
+          variant={selectedInstructor === "matheus" ? "default" : "outline"} 
+          className="px-2 py-1 text-xs sm:text-sm sm:px-4 sm:py-2"
+        >
           Just Matheus
         </Button>
       </div>
